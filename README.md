@@ -10,7 +10,8 @@
 下载构建环境（我已经打包到github）
 
 ```
-mkdir  -p /root/docker/
+mkdir -p /root/docker/
+cd /root/docker
 git clone https://github.com/ShadowFl0w/Cloud-Native-Security-Test.git
 ```
 
