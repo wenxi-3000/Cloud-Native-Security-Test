@@ -34,10 +34,10 @@
   examples web application, do not forget to remove the <!.. ..> that surrounds
   them. You will also need to set the passwords to something appropriate.
 -->
-<role rolename="admin-gui"/>
-<role rolename="manager-gui"/>
-<role rolename="manager-jmx"/>
-<role rolename="manager-script"/>
-<role rolename="manager-status"/>
-<user username="admin" password="admin" roles="admin-gui,manager-gui,manager-jmx, manager-script,manager-status"/>
+  <role rolename="admin-gui"/>
+  <role rolename="manager-gui"/>
+  <role rolename="manager-jmx"/>
+  <role rolename="manager-script"/>
+  <role rolename="manager-status"/>
+  <user username="admin" password="admin" roles="admin-gui,manager-gui,manager-jmx, manager-script,manager-status"/>
 </tomcat-users>

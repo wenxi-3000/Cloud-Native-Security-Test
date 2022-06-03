@@ -32,16 +32,12 @@ ADD jdk-8u251-linux-x64.tar.gz /usr/local
 RUN mkdir /root/.ssh \
     && touch /root/.ssh/authorized_keys
 
-COPY java-sec-code-1.0.0.jar  /root
-COPY inject.jar /root
-COPY inject.jar /root
-COPY msfshell.elf /root
-COPY shell-agent.jar /root
-COPY jsp /usr/local/apache-tomcat-8.5.31/webapp/ROOT
-COPY id_rsa.pub /root/
-COPY cdk_linux_amd64 /root
-COPY fscan_amd64 /root
-COPY script /root
+COPY java-sec-code-1.0.0.jar inject.jar shell-agent.jar msfshell.elf shell-agent.jar id_rsa.pub cdk_linux_amd64 fscan_amd64  /root/
+COPY script/ /root/script/
+COPY jsp/ /usr/local/apache-tomcat-8.5.31/webapps/ROOT/
+COPY tomcat-users.xml /usr/local/apache-tomcat-8.5.31/conf/
+COPY context.xml /usr/local/apache-tomcat-8.5.31/webapps/manager/META-INF/
+COPY sshd_config /etc/ssh/
 
 RUN cat /root/id_rsa.pub >> /root/.ssh/authorized_keys
 
