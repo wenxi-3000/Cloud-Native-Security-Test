@@ -3,6 +3,7 @@
 
 
 
+
 ## 镜像准备
 
 
@@ -11,7 +12,7 @@
 
 ```
 mkdir -p /root/docker/
-cd /root/docker
+cd /root/docker/
 git clone https://github.com/ShadowFl0w/Cloud-Native-Security-Test.git
 ```
 
@@ -90,52 +91,15 @@ docker build -t mytomcat:v6.0.1 .
 docker run --rm -it --name mytomcat -p 8081:8080 mytomcat:v6.0.1
 ```
 
-添加ssh登录
 
 
 
-**ssh登录**
-
-需要配置/etc/ssh/sshd_config文件里的配置信息， vim /etc/ssh/sshd_config进行编辑，按“i”进入编辑状态，在其文件里找到并修改为：PasswordAuthentication yes,PermitRootLogin yes两行即可。
-
-commit
-
-```
-docker commit mytomcat mytomcat:v6.0.2
-```
-
-
-
-
-
-
-
-**修改tomcat配置**
-
-#/usr/local/tomcat/conf/tomcat-users.xml,账号内容改为如下
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-
-<tomcat-users xmlns="http://tomcat.apache.org/xml"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://tomcat.apache.org/xml tomcat-users.xsd"
-              version="1.0">
-<role rolename="admin-gui"/>
-<role rolename="manager-gui"/>
-<role rolename="manager-jmx"/>
-<role rolename="manager-script"/>
-<role rolename="manager-status"/>
-<user username="admin" password="admin" roles="admin-gui,manager-gui,manager-jmx, manager-script,manager-status"/>
-</tomcat-users>
-
-```
 
 
 
 ## 马测试
 
-#### 添加jsp马
+### 添加jsp马
 
 最基础的jsp马如下，放到`/usr/local/tomcat/webapps/ROOT`目录下
 
@@ -202,9 +166,7 @@ docker commit mytomcat mytomcat:v6.0.2
 
 
 
-
-
-#### tomcat 内存马
+### tomcat 内存马
 
 放到`/usr/local/tomcat/webapps/ROOT`
 
@@ -509,7 +471,7 @@ filter内存马
 
 
 
-#### 添加agent java 内存马
+### 添加agent java 内存马
 
 进入容器，由于注入成功会自动删除jar包，我们对其进行备份
 
@@ -528,12 +490,6 @@ root@edcb337d401a:~# java -jar inject.jar shadowtest
 ```
 
 访问`http://172.16.42.10:8081/?psw=shadowtest&cmd=whoami` 
-
-
-
-
-
-
 
 
 
@@ -587,7 +543,7 @@ gcc a.c -o a
 
 
 
-#### CVE-2019-5736 runc容器逃逸漏洞
+### CVE-2019-5736 runc容器逃逸漏洞
 
 - 5736.go
 
@@ -678,13 +634,13 @@ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build 5736.go
 
 
 
-#### CVE-2019-14271:加载不受信任的动态链接
+### CVE-2019-14271:加载不受信任的动态链接
 
 这个漏洞的脚本暂时不使用，需要宿主机的权限操作。
 
 
 
-#### SYS_ADMIN逃逸
+### SYS_ADMIN逃逸
 
 - release_agent.sh
 
@@ -711,9 +667,7 @@ cat "/output"
 
 
 
-
-
-#### SYS_PTRACE逃逸
+### SYS_PTRACE逃逸
 
 生成shellcode(如果不生成，会在靶机上生成一个终端)，<font color="red">这里我们需要提前知道反弹shell测试机器的地址和端口</font>
 
@@ -850,7 +804,7 @@ gcc infect.c -o infect
 
 
 
-#### SYS_MODULE逃逸
+### SYS_MODULE逃逸
 
 将下面两个文件放在moduleEXP文件夹，编译后移动到容器， 这里也需要提前知道反弹地址
 
@@ -971,7 +925,7 @@ docker push hub.xxx.com/user/sectest:v1
 
 
 
-## 3. 集群运行
+## 集群运行
 
 ### 挂载危险目录以及开启特权
 
@@ -1084,4 +1038,3 @@ spec:
           hostPath:
             path: /proc
 ```
-
